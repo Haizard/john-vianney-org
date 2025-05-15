@@ -42,19 +42,19 @@ router.post('/login', async (req, res) => {
 
     // Extract credentials from request body
     const { username, email, emailOrUsername, password } = req.body;
-    
+
     // Determine the login identifier
     const loginIdentifier = username || emailOrUsername || email;
-    
+
     console.log('Login identifier:', loginIdentifier);
     console.log('Password provided:', !!password);
 
     // Validate required fields
     if (!loginIdentifier || !password) {
       console.log('Missing credentials');
-      return res.status(400).json({ 
+      return res.status(400).json({
         message: 'Username/email and password are required',
-        received: { 
+        received: {
           username: !!username,
           emailOrUsername: !!emailOrUsername,
           email: !!email,
@@ -84,20 +84,20 @@ router.post('/login', async (req, res) => {
     const bcrypt = require('bcrypt');
     console.log('Verifying password with bcrypt');
     const isMatch = await bcrypt.compare(password, user.password);
-    
+
     if (!isMatch) {
       console.log('Password verification failed');
-      
+
       // Try with bcryptjs as fallback
       const bcryptjs = require('bcryptjs');
       console.log('Trying with bcryptjs as fallback');
       const isBcryptJsMatch = await bcryptjs.compare(password, user.password);
-      
+
       if (!isBcryptJsMatch) {
         console.log('Password verification failed with bcryptjs too');
         return res.status(401).json({ message: 'Invalid credentials' });
       }
-      
+
       console.log('Password verified with bcryptjs');
     } else {
       console.log('Password verified with bcrypt');
@@ -114,7 +114,7 @@ router.post('/login', async (req, res) => {
     // Generate JWT token
     const jwtSecret = process.env.JWT_SECRET || 'kjjf6565i87utgfu64erd';
     console.log('Using JWT secret:', jwtSecret ? 'Secret is set' : 'Using fallback secret');
-    
+
     const token = jwt.sign(
       {
         userId: user._id,
@@ -140,19 +140,23 @@ router.post('/login', async (req, res) => {
     };
 
     console.log('Sending login response with role:', user.role);
-    
+
     // Set CORS headers explicitly
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    
+
     res.json(responseData);
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ message: 'Server error during login', error: error.message });
   }
 });
-    }
+
+// Login route (enhanced version)
+router.post('/login-enhanced', async (req, res) => {
+  try {
+    const { emailOrUsername: loginIdentifier, password } = req.body;
 
     console.log(`Attempting login with identifier: ${loginIdentifier}`);
 
