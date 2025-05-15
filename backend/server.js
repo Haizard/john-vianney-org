@@ -4,6 +4,7 @@ const dns = require('node:dns');
 const app = require('./index');
 const { logConnectionState } = require('./connection-state');
 const assignmentRoutes = require('./routes/assignmentRoutes');
+const { runStartupTasks } = require('./startup');
 
 // Set DNS servers to Google's public DNS
 // This can help with DNS resolution issues
@@ -185,9 +186,16 @@ mongoose.connection.on('connecting', () => {
   logConnectionState();
 });
 
-mongoose.connection.on('connected', () => {
+mongoose.connection.on('connected', async () => {
   console.log('Connected to MongoDB');
   logConnectionState();
+
+  // Run startup tasks after successful connection
+  try {
+    await runStartupTasks();
+  } catch (error) {
+    console.error('Error running startup tasks:', error);
+  }
 });
 
 mongoose.connection.on('disconnected', () => {
