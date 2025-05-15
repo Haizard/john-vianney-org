@@ -44,8 +44,8 @@ services:
     rootDir: frontend/school-frontend-app
     region: ohio
     plan: free
-    buildCommand: npm ci --production=false && npm run build:render-direct
-    startCommand: chmod +x start-server.sh && ./start-server.sh
+    buildCommand: npm ci --production=false && npm run build:render-direct && node check-build.js
+    startCommand: node render-server.js
     healthCheckPath: /health
     buildFilter:
       paths:
@@ -59,6 +59,8 @@ services:
         - server-simple.js
         - server-direct.js
         - start-server.sh
+        - render-server.js
+        - check-build.js
     envVars:
       - key: NODE_ENV
         value: production
