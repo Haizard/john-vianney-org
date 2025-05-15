@@ -1,8 +1,8 @@
-# AGAPE LUTHERAN JUNIOR SEMINARY School Management System
+# St. John Vianney School Management System
 
 > Last updated: April 17, 2025 - Fixed A-Level marks entry for students without subject combinations
 
-This is a comprehensive school management system for AGAPE LUTHERAN JUNIOR SEMINARY, featuring student management, teacher management, academic management, and result reporting for both O-Level and A-Level education systems.
+This is a comprehensive school management system for St. John Vianney, featuring student management, teacher management, academic management, and result reporting for both O-Level and A-Level education systems.
 
 ## Project Structure
 
@@ -32,7 +32,7 @@ This project is configured for deployment on Render using the `render.yaml` Blue
 
 ### Automatic Deployment
 
-1. Fork or clone this repository to your GitHub account
+1. Fork or clone this repository to your GitHub account (https://github.com/Haizard/john-vianney-org.git)
 2. Create a new Render account or log in to your existing account
 3. Go to the Dashboard and click "New Blueprint"
 4. Connect your GitHub account and select this repository
@@ -48,11 +48,11 @@ If you prefer to deploy the services manually:
 1. Create a new Web Service on Render
 2. Connect your GitHub repository
 3. Configure the service:
-   - **Name**: st-john-vianey-api (or your preferred name)
+   - **Name**: john-vianney-api (or your preferred name)
    - **Runtime**: Node
    - **Root Directory**: backend
    - **Build Command**: npm install
-   - **Start Command**: npm start
+   - **Start Command**: node scripts/ensureJwtSecret.js && npm start
    - **Health Check Path**: /api/health
 4. Add the required environment variables (see .env.example)
 5. Click "Create Web Service"
@@ -62,15 +62,15 @@ If you prefer to deploy the services manually:
 1. Create a new Web Service on Render
 2. Connect your GitHub repository
 3. Configure the service:
-   - **Name**: st-john-vianey-frontend (or your preferred name)
+   - **Name**: john-vianney-frontend (or your preferred name)
    - **Runtime**: Node
    - **Root Directory**: frontend/school-frontend-app
-   - **Build Command**: npm install && npm run build
-   - **Start Command**: npm start
+   - **Build Command**: npm install && npm run build:render-direct
+   - **Start Command**: node server.js
    - **Health Check Path**: /health
 4. Add the required environment variables:
    - NODE_ENV: production
-   - REACT_APP_API_URL: https://your-backend-api-url.onrender.com/api
+   - REACT_APP_API_URL: `https://john-vianney-api.onrender.com/api`
    - REACT_APP_USE_MOCK_DATA: false
 5. Click "Create Web Service"
 
@@ -78,8 +78,8 @@ If you prefer to deploy the services manually:
 
 1. Create a new MongoDB database on Render
 2. Configure the database:
-   - **Name**: st-john-vianey-db (or your preferred name)
-   - **Database Name**: john_vianey
+   - **Name**: john-vianney-db (or your preferred name)
+   - **Database Name**: john_vianney
 3. Copy the connection string and add it to your backend service's environment variables
 
 ## Local Development
