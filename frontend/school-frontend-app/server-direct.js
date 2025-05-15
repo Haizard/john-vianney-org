@@ -1,6 +1,6 @@
 /**
  * Direct Server for React Application
- * 
+ *
  * This server ensures that your actual React application is served,
  * not any static placeholder.
  */
@@ -42,13 +42,27 @@ app.get('/health', (req, res) => {
 
 // API proxy for local development
 app.use('/api', (req, res) => {
-  res.redirect(`https://misty-roby-haizard-17a53e2a.koyeb.app${req.originalUrl}`);
+  const apiUrl = process.env.REACT_APP_API_URL || 'https://john-vianney-api.onrender.com/api';
+  console.log(`Proxying request to: ${apiUrl}${req.url}`);
+
+  // Simple redirect for GET requests
+  if (req.method === 'GET') {
+    return res.redirect(`${apiUrl}${req.url}`);
+  }
+
+  // For other methods, return a message suggesting direct API access
+  res.status(501).json({
+    message: 'Direct API access required',
+    apiUrl: apiUrl,
+    originalUrl: req.originalUrl,
+    info: 'This server only supports GET redirects. For other methods, please access the API directly.'
+  });
 });
 
 // For any request that doesn't match a static file, send the index.html
 app.get('*', (req, res) => {
   const indexPath = path.join(__dirname, 'build', 'index.html');
-  
+
   // Check if index.html exists
   if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);
@@ -60,12 +74,12 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   console.log(`Serving React application from ${path.join(__dirname, 'build')}`);
-  
+
   // List files in build directory for debugging
   try {
     const files = fs.readdirSync(path.join(__dirname, 'build'));
     console.log('Files in build directory:', files);
-    
+
     if (fs.existsSync(path.join(__dirname, 'build', 'index.html'))) {
       console.log('index.html exists in build directory');
     } else {

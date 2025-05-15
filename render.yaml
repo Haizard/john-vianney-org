@@ -45,7 +45,7 @@ services:
     region: ohio
     plan: free
     buildCommand: npm ci --production=false && npm run build:render-direct
-    startCommand: node server.js
+    startCommand: chmod +x start-server.sh && ./start-server.sh
     healthCheckPath: /health
     buildFilter:
       paths:
@@ -55,6 +55,10 @@ services:
         - public/**/*
         - package.json
         - package-lock.json
+        - server.js
+        - server-simple.js
+        - server-direct.js
+        - start-server.sh
     envVars:
       - key: NODE_ENV
         value: production

@@ -26,10 +26,12 @@ app.use(helmet({
 app.use(compression());
 
 // API proxy middleware
-const apiProxy = createProxyMiddleware('/api', {
+const apiProxy = createProxyMiddleware({
   target: process.env.REACT_APP_API_URL || 'http://localhost:5000',
   changeOrigin: true,
-  pathRewrite: { '^/api': '/api' },
+  pathRewrite: function(path) {
+    return path.replace(/^\/api/, '/api');
+  },
   logLevel: process.env.NODE_ENV === 'development' ? 'debug' : 'error',
   onError: (err, req, res) => {
     console.error('Proxy error:', err);
@@ -45,7 +47,10 @@ const apiProxy = createProxyMiddleware('/api', {
 });
 
 // Use the API proxy middleware
-app.use('/api', apiProxy);
+app.use('/api', (req, res, next) => {
+  console.log(`Proxying request to: ${req.url}`);
+  return apiProxy(req, res, next);
+});
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'build')));
@@ -60,6 +65,14 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+// Log environment variables (without sensitive data)
+console.log('Environment variables:');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+console.log('PORT:', PORT);
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  console.log(`Health check endpoint: http://localhost:${PORT}/health`);
+  console.log(`API proxy target: ${process.env.REACT_APP_API_URL || 'http://localhost:5000'}`);
 });
