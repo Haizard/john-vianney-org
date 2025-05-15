@@ -1,0 +1,8 @@
+{
+  "name": "agape-netlify-functions",
+  "version": "1.0.0",
+  "description": "Netlify Functions for Agape Seminary School",
+  "dependencies": {
+    "axios": "^1.8.4"
+  }
+}

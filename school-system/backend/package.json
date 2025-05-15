@@ -1,0 +1,37 @@
+{
+  "name": "school-management-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "intuit-oauth": "^4.2.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3",
+    "multer": "^1.4.5-lts.2",
+    "node-quickbooks": "^2.0.45",
+    "pdfkit": "^0.16.0",
+    "xlsx": "^0.18.5"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "start:koyeb": "node koyeb-server.js",
+    "start:pm2": "pm2 start server.js --name 'st-john-vianey-api'",
+    "stop:pm2": "pm2 stop st-john-vianey-api",
+    "restart:pm2": "pm2 restart st-john-vianey-api",
+    "dev": "nodemon --ignore 'node_modules/*' server.js",
+    "postinstall": "npm prune --production",
+    "db:create-indexes": "node scripts/dbIndexes.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
