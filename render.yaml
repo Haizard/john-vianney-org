@@ -45,7 +45,7 @@ services:
     region: ohio
     plan: free
     buildCommand: npm ci --production=false && npm run build:render-direct && node check-build.js
-    startCommand: node render-server.js
+    startCommand: node static-server.js
     healthCheckPath: /health
     buildFilter:
       paths:
@@ -60,6 +60,7 @@ services:
         - server-direct.js
         - start-server.sh
         - render-server.js
+        - static-server.js
         - check-build.js
     envVars:
       - key: NODE_ENV
