@@ -16,10 +16,13 @@
         "ajv": "^8.12.0",
         "axios": "^1.8.4",
         "bcryptjs": "^2.4.3",
+        "compression": "^1.8.0",
         "date-fns": "^2.30.0",
         "exceljs": "^4.4.0",
+        "express": "^5.1.0",
         "file-saver": "^2.0.5",
         "framer-motion": "^6.5.1",
+        "helmet": "^8.1.0",
         "html2canvas": "^1.4.1",
         "http-proxy-middleware": "^2.0.6",
         "jsonwebtoken": "^9.0.0",
@@ -55,7 +58,7 @@
         "test-api-proxy": "node scripts/test-api-proxy.js",
         "dev:prod-api": "npm run use-production-api && npm run dev",
         "dev:local-api": "npm run use-local-api && npm run dev",
-        "postinstall": "npm install --save-dev eslint-plugin-react-hooks express compression helmet",
+        "postinstall": "npm install --save-dev eslint-plugin-react-hooks",
         "build:static": "CI=true DISABLE_ESLINT_PLUGIN=true REACT_APP_USE_STATIC_MODE=true react-scripts build",
         "build:static:script": "node scripts/static-build.js",
         "build:direct": "node scripts/direct-deploy.js",
@@ -96,11 +99,8 @@
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^6.6.3",
-        "compression": "^1.8.0",
         "eslint-plugin-react": "^7.37.5",
         "eslint-plugin-react-hooks": "^5.2.0",
-        "express": "^5.1.0",
-        "gh-pages": "^6.3.0",
-        "helmet": "^8.1.0"
+        "gh-pages": "^6.3.0"
     }
 }

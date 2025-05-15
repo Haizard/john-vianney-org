@@ -44,7 +44,7 @@ services:
     rootDir: frontend/school-frontend-app
     region: ohio
     plan: free
-    buildCommand: npm ci && npm run build:render-direct
+    buildCommand: npm ci --production=false && npm run build:render-direct
     startCommand: node server.js
     healthCheckPath: /health
     buildFilter:
