@@ -28,7 +28,7 @@ The following report types have been deprecated and replaced by the Unified Repo
 
 ## Deployment on Render
 
-This project is configured for deployment on Render using the `render.yaml` Blueprint file.
+This project is configured for deployment on Render using the `render.yaml` Blueprint file. The project uses MongoDB for the database.
 
 ### Automatic Deployment
 
