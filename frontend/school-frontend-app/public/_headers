@@ -1,0 +1,11 @@
+# Cloudflare Pages headers
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/api/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+  Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization

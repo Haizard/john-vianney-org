@@ -1,0 +1,77 @@
+services:
+  # Backend API Service
+  - type: web
+    name: st-john-vianey-api
+    runtime: node
+    rootDir: backend
+    region: ohio
+    plan: free
+    buildCommand: npm ci
+    startCommand: node scripts/ensureJwtSecret.js && npm start
+    healthCheckPath: /api/health
+    buildFilter:
+      paths:
+        - routes/**/*.js
+        - models/**/*.js
+        - middleware/**/*.js
+        - controllers/**/*.js
+        - app.js
+        - package.json
+        - package-lock.json
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: st-john-vianey-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: USE_MOCK_DATA
+        value: "false"
+      - key: CORS_ALLOWED_ORIGINS
+        # Updated to include the correct frontend URL
+        value: "https://st-john-vianey-frontend.onrender.com,http://localhost:3000"
+
+  # Frontend Service (Web Service using custom server.js)
+  - type: web # Corrected type
+    name: st-john-vianey-frontend
+    runtime: node # Added back runtime
+    rootDir: frontend/school-frontend-app
+    region: ohio
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: node server.js # Use the custom server
+    healthCheckPath: /health # Added back health check
+    # publishDir: build # Removed for web service
+    # rewrites: # Removed for web service (handled in server.js)
+    buildFilter:
+      paths:
+        - src/**/*.js
+        - src/**/*.jsx
+        - src/**/*.css
+        - public/**/*
+        - package.json
+        - package-lock.json
+    envVars: # Environment variables needed for the build process
+      - key: NODE_ENV
+        value: production
+      - key: REACT_APP_API_URL
+        # Ensure this points to your deployed backend API URL
+        value: https://st-john-vianey-api.onrender.com/api
+      - key: REACT_APP_USE_MOCK_DATA
+        value: "false"
+      - key: REACT_APP_TIMEOUT
+        value: "60000"
+
+# Database
+databases:
+  - name: st-john-vianey-db
+    plan: free
+    region: ohio
+    databaseName: john_vianey
+    ipAllowList: []  # only allow internal connections

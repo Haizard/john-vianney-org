@@ -1,0 +1,507 @@
+/* A-Level Class Report Styling */
+
+/* Main container styling */
+.report-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: visible;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Header styling */
+.report-header {
+  background-color: #1a237e;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 4px solid #ffc107;
+}
+
+.report-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.report-subtitle {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+/* Section styling */
+.report-section {
+  margin-bottom: 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: visible;
+  width: 100%;
+  max-width: 100%;
+}
+
+.section-header {
+  background-color: #f5f5f5;
+  padding: 12px 16px;
+  border-bottom: 2px solid #1a237e;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a237e;
+  margin: 0;
+}
+
+.section-content {
+  padding: 16px;
+}
+
+/* Table styling */
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px; /* Microsoft Word size 16 equivalent */
+  table-layout: auto; /* Allow table to adjust based on content */
+  display: table;
+  overflow: visible;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.report-table th {
+  background-color: #2e7d32; /* Green header like in the sample */
+  color: white;
+  padding: 8px 6px; /* Significantly increased padding */
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #1b5e20;
+  white-space: nowrap; /* Prevent wrapping */
+  font-size: 16px; /* Microsoft Word size 16 equivalent */
+  vertical-align: middle;
+}
+
+.report-table td {
+  padding: 8px 6px; /* Significantly increased padding */
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 16px; /* Microsoft Word size 16 equivalent */
+  vertical-align: middle;
+}
+
+.report-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.report-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Compact table styles */
+.compact-table th {
+  padding: 8px 6px;
+  font-size: 16px;
+}
+
+.compact-table td {
+  padding: 8px 6px;
+  font-size: 16px;
+}
+
+/* Table container styles */
+.table-container {
+  max-height: none !important;
+  overflow: visible !important;
+  width: 100% !important;
+  overflow-x: visible !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* Subject column styles */
+.subject-column {
+  min-width: 45px !important;
+  max-width: 45px !important;
+  width: 45px !important;
+  overflow: visible;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 120px !important;
+  border: 1px solid #1b5e20 !important;
+}
+
+/* Student row styling */
+.student-row {
+  font-weight: 500;
+}
+
+.student-name {
+  text-align: left;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -1px;
+  word-spacing: -2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+/* Grade styling */
+.grade-a {
+  color: #1b5e20; /* Darker green */
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+
+.grade-b {
+  color: #0d47a1; /* Darker blue */
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+
+.grade-c {
+  color: #4a148c; /* Darker purple */
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+
+.grade-d {
+  color: #e65100; /* Darker orange */
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+
+.grade-e, .grade-s {
+  color: #f57f17; /* Darker yellow */
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+
+.grade-f {
+  color: #b71c1c; /* Darker red */
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+
+/* Division styling */
+.division-chip {
+  padding: 3px 4px;
+  border-radius: 3px;
+  font-weight: 700;
+  display: inline-block;
+  min-width: 30px;
+  font-size: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  letter-spacing: -0.5px;
+}
+
+.division-1 {
+  background-color: #1b5e20; /* Darker green */
+  color: white;
+}
+
+.division-2 {
+  background-color: #0d47a1; /* Darker blue */
+  color: white;
+}
+
+.division-3 {
+  background-color: #e65100; /* Darker orange */
+  color: white;
+}
+
+.division-4 {
+  background-color: #b71c1c; /* Darker red */
+  color: white;
+}
+
+.division-0 {
+  background-color: #424242; /* Darker grey */
+  color: white;
+}
+
+/* Summary section styling */
+.summary-section {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  padding: 16px;
+  margin-top: 24px;
+}
+
+.summary-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a237e;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #ffc107;
+  padding-bottom: 8px;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.summary-table th {
+  background-color: #1a237e;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #ddd;
+}
+
+.summary-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+/* School logo and header */
+.school-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.school-logo {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.school-info {
+  text-align: center;
+}
+
+.school-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #1a237e;
+}
+
+.school-address {
+  font-size: 14px;
+  color: #616161;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .report-container {
+    box-shadow: none;
+    border: none;
+  }
+
+  .report-header {
+    background-color: #2e7d32 !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .report-table {
+    font-size: 10pt !important; /* Reduced size */
+    width: 100% !important;
+    table-layout: fixed !important; /* Fixed layout for better control */
+    page-break-inside: avoid !important; /* Avoid page breaks within table */
+    border-collapse: collapse !important;
+    margin: 0 !important;
+    border-spacing: 0 !important;
+    letter-spacing: -0.5pt !important; /* Reduce letter spacing */
+  }
+
+  .report-table th {
+    background-color: #2e7d32 !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    padding: 1px !important; /* Minimal padding */
+    font-size: 9pt !important; /* Reduced size */
+    text-align: center !important;
+    vertical-align: middle !important;
+    border: 1px solid #1b5e20 !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5pt !important; /* Reduce letter spacing */
+    word-spacing: -1pt !important; /* Reduce word spacing */
+    height: 80px !important; /* Fixed height for vertical headers */
+  }
+
+  .report-table td {
+    padding: 1px !important; /* Minimal padding */
+    font-size: 10pt !important; /* Reduced size */
+    text-align: center !important;
+    vertical-align: middle !important;
+    border: 1px solid #ddd !important;
+    letter-spacing: -0.5pt !important; /* Reduce letter spacing */
+    word-spacing: -1pt !important; /* Reduce word spacing */
+    height: 20px !important; /* Fixed height */
+    max-height: 20px !important; /* Maximum height */
+    overflow: hidden !important; /* Hide overflow */
+    white-space: nowrap !important; /* Prevent wrapping */
+    font-weight: 700 !important; /* Bold text */
+  }
+
+  /* Make student names compact but readable */
+  .student-name {
+    font-size: 10pt !important; /* Reduced size to fit more content */
+    font-weight: 700 !important;
+    text-align: left !important;
+    max-width: 80px !important; /* Force narrow width */
+    width: 80px !important; /* Force narrow width */
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    letter-spacing: -0.5pt !important; /* Reduce letter spacing */
+    word-spacing: -1pt !important; /* Reduce word spacing */
+  }
+
+  /* Make sex column extremely narrow */
+  tr td:nth-child(3) {
+    max-width: 15px !important;
+    width: 15px !important;
+    min-width: 15px !important;
+    font-size: 8pt !important;
+    padding: 1px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* Make points column narrow */
+  tr td:nth-child(4) {
+    max-width: 20px !important;
+    width: 20px !important;
+    min-width: 20px !important;
+    font-size: 8pt !important;
+    padding: 1px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* Make rank columns narrow */
+  tr td:nth-child(1), tr td:last-child {
+    max-width: 20px !important;
+    width: 20px !important;
+    min-width: 20px !important;
+    font-size: 8pt !important;
+    padding: 1px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* Make total and average columns narrow */
+  tr td:nth-last-child(2), tr td:nth-last-child(3) {
+    max-width: 25px !important;
+    width: 25px !important;
+    min-width: 25px !important;
+    font-size: 8pt !important;
+    padding: 1px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .division-chip {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-size: 10pt !important; /* Reduced size */
+    padding: 1px 2px !important; /* Minimal padding */
+    min-width: 20px !important; /* Reduced width */
+    max-width: 25px !important; /* Maximum width */
+    width: 20px !important; /* Fixed width */
+    font-weight: 700 !important;
+    border-radius: 2px !important;
+    letter-spacing: -0.5pt !important; /* Reduce letter spacing */
+    display: inline-block !important;
+    overflow: hidden !important;
+  }
+
+  /* Make grades compact but readable */
+  .grade-a, .grade-b, .grade-c, .grade-d, .grade-e, .grade-s, .grade-f {
+    font-size: 10pt !important; /* Reduced size */
+    font-weight: 700 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    letter-spacing: -0.5pt !important; /* Reduce letter spacing */
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+
+  .subject-column {
+    min-width: 25px !important; /* Reduced width */
+    max-width: 25px !important; /* Reduced width */
+    width: 25px !important; /* Reduced width */
+    height: 80px !important; /* Fixed height */
+    overflow: hidden !important;
+    border: 1px solid #1b5e20 !important;
+    padding: 1px !important; /* Minimal padding */
+  }
+
+  /* Ensure the table fits on the page */
+  .table-container {
+    max-height: none !important;
+    overflow: hidden !important; /* Hide overflow */
+    width: 100% !important;
+    page-break-inside: avoid !important; /* Avoid page breaks */
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: scale(0.95) !important; /* Slightly scale down */
+    transform-origin: top left !important; /* Scale from top left */
+  }
+
+  /* Remove sticky headers in print mode */
+  .MuiTableCell-stickyHeader {
+    position: relative !important;
+  }
+
+  /* Ensure proper page breaks */
+  .report-section {
+    page-break-inside: avoid !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Landscape orientation for better fit */
+  @page {
+    size: landscape;
+    margin: 0.1cm !important; /* Extremely minimal margins */
+    scale: 75% !important; /* Further reduced scale to fit more content */
+  }
+
+  /* Adjust vertical headers for print */
+  [style*="transform: rotate(-90deg)"] {
+    transform: rotate(-90deg) scale(0.7) !important; /* Further reduced scale */
+    width: 10px !important; /* Further reduced width */
+    font-size: 7pt !important; /* Further reduced font size */
+    letter-spacing: -0.8pt !important; /* Further reduce letter spacing */
+    word-spacing: -1.5pt !important; /* Further reduce word spacing */
+    white-space: nowrap !important; /* Prevent wrapping */
+    overflow: hidden !important; /* Hide overflow */
+    text-overflow: ellipsis !important; /* Add ellipsis for overflow */
+    max-width: 60px !important; /* Reduced maximum width */
+    font-weight: 700 !important; /* Bold text */
+    padding: 0 !important; /* No padding */
+    margin: 0 !important; /* No margin */
+  }
+}
