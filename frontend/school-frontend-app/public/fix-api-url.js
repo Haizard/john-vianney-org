@@ -16,7 +16,7 @@
                               window.location.hostname === '127.0.0.1';
 
     // The correct backend URL - use localhost:5000 for local development
-    const BACKEND_URL = isLocalDevelopment ? 'http://localhost:5000' : 'https://agape-render.onrender.com';
+    const BACKEND_URL = isLocalDevelopment ? 'http://localhost:5000' : 'https://john-vianney-api.onrender.com';
 
     console.log(`API URL Fixer: Using backend URL: ${BACKEND_URL}`);
     console.log(`API URL Fixer: Local development mode: ${isLocalDevelopment ? 'Yes' : 'No'}`);
