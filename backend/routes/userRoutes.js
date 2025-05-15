@@ -35,7 +35,7 @@ router.options('*', loginCors, (req, res) => {
 });
 
 // Login route with enhanced debugging
-router.post('/login', async (req, res) => {
+router.post('/login', loginCors, async (req, res) => {
   try {
     console.log('Login request received:', req.body);
     console.log('Headers:', req.headers);

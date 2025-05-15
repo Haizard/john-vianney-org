@@ -31,7 +31,7 @@ console.log('Final API URL configuration:', apiUrl);
 
 // Force the API_URL to be the render.com URL in production
 if (process.env.NODE_ENV === 'production') {
-  apiUrl = 'https://stjohnvianney-render.onrender.com/';
+  apiUrl = 'https://john-vianney-api.onrender.com/';
   console.log('Production environment detected, forcing API URL to:', apiUrl);
 }
 

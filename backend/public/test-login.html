@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Login Test</h1>
+    
+    <div class="container">
+        <h2>Health Check</h2>
+        <button id="healthCheck">Test Health Endpoint</button>
+        <pre id="healthResult">Results will appear here...</pre>
+    </div>
+
+    <div class="container">
+        <h2>Login Test</h2>
+        <div>
+            <label for="username">Username or Email:</label>
+            <input type="text" id="username" value="admin">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" value="admin123">
+        </div>
+        <div style="margin-top: 10px;">
+            <button id="loginButton">Test Login</button>
+            <button id="loginDirectButton">Test Direct Login</button>
+        </div>
+        <pre id="loginResult">Results will appear here...</pre>
+    </div>
+
+    <div class="container">
+        <h2>CORS Test</h2>
+        <button id="corsTest">Test CORS</button>
+        <pre id="corsResult">Results will appear here...</pre>
+    </div>
+
+    <script>
+        // API URL
+        const API_URL = 'https://john-vianney-api.onrender.com';
+        
+        // Health check test
+        document.getElementById('healthCheck').addEventListener('click', async () => {
+            const resultElement = document.getElementById('healthResult');
+            resultElement.textContent = 'Testing health endpoint...';
+            
+            try {
+                const response = await fetch(`${API_URL}/api/health`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                resultElement.innerHTML = `<span class="success">Success!</span>\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultElement.innerHTML = `<span class="error">Error:</span>\n${error.message}`;
+                console.error('Health check error:', error);
+            }
+        });
+        
+        // Login test
+        document.getElementById('loginButton').addEventListener('click', async () => {
+            const resultElement = document.getElementById('loginResult');
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            resultElement.textContent = 'Testing login...';
+            
+            try {
+                const response = await fetch(`${API_URL}/api/users/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Origin': window.location.origin
+                    },
+                    body: JSON.stringify({ 
+                        username,
+                        password,
+                        emailOrUsername: username,
+                        email: username
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultElement.innerHTML = `<span class="success">Login successful!</span>\n${JSON.stringify(data, null, 2)}`;
+                } else {
+                    const errorText = await response.text();
+                    resultElement.innerHTML = `<span class="error">Login failed with status ${response.status}:</span>\n${errorText}`;
+                }
+            } catch (error) {
+                resultElement.innerHTML = `<span class="error">Error:</span>\n${error.message}`;
+                console.error('Login error:', error);
+            }
+        });
+        
+        // Direct login test (with XMLHttpRequest)
+        document.getElementById('loginDirectButton').addEventListener('click', () => {
+            const resultElement = document.getElementById('loginResult');
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            resultElement.textContent = 'Testing direct login with XMLHttpRequest...';
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', `${API_URL}/api/users/login`, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('Origin', window.location.origin);
+            
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        const data = JSON.parse(xhr.responseText);
+                        resultElement.innerHTML = `<span class="success">Direct login successful!</span>\n${JSON.stringify(data, null, 2)}`;
+                    } catch (e) {
+                        resultElement.innerHTML = `<span class="error">Error parsing response:</span>\n${xhr.responseText}`;
+                    }
+                } else {
+                    resultElement.innerHTML = `<span class="error">Direct login failed with status ${xhr.status}:</span>\n${xhr.responseText}`;
+                }
+            };
+            
+            xhr.onerror = function() {
+                resultElement.innerHTML = `<span class="error">Network error during direct login</span>`;
+                console.error('XHR error:', xhr);
+            };
+            
+            xhr.send(JSON.stringify({ 
+                username,
+                password,
+                emailOrUsername: username,
+                email: username
+            }));
+        });
+        
+        // CORS test
+        document.getElementById('corsTest').addEventListener('click', async () => {
+            const resultElement = document.getElementById('corsResult');
+            resultElement.textContent = 'Testing CORS...';
+            
+            try {
+                const response = await fetch(`${API_URL}/api/test-cors`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Origin': window.location.origin
+                    }
+                });
+                
+                const data = await response.json();
+                resultElement.innerHTML = `<span class="success">CORS test successful!</span>\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultElement.innerHTML = `<span class="error">CORS test error:</span>\n${error.message}`;
+                console.error('CORS test error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

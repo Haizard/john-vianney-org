@@ -7,6 +7,9 @@ const cors = require('cors');
 const allowedOrigins = [
   'http://localhost:3000',
   'https://st-john-vianey-frontend.onrender.com',
+  'https://john-vianney-frontend.onrender.com',
+  'https://john-vianney.onrender.com',
+  'https://john-vianney-org.onrender.com',
   'https://agape-seminary-school-system.onrender.com',
   'https://agape-seminary-school.onrender.com',
   'https://agape-seminary-school-frontend.onrender.com',
@@ -29,7 +32,7 @@ if (process.env.CORS_ALLOWED_ORIGINS) {
   }
 }
 
-// Standard CORS options
+// Standard CORS options - More permissive for troubleshooting
 const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps, curl, etc.)
@@ -38,6 +41,11 @@ const corsOptions = {
       return callback(null, true);
     }
 
+    // TEMPORARY: Allow all origins for troubleshooting
+    console.log('Temporarily allowing all origins for troubleshooting:', origin);
+    return callback(null, true);
+
+    /* Original code - commented out for troubleshooting
     // Check if the origin is allowed
     if (allowedOrigins.indexOf(origin) === -1) {
       // For development, allow all origins
@@ -54,6 +62,7 @@ const corsOptions = {
 
     console.log('Allowed origin:', origin);
     return callback(null, true);
+    */
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
