@@ -7,7 +7,7 @@ services:
     region: ohio
     plan: free
     buildCommand: npm install
-    startCommand: node scripts/ensureJwtSecret.js && npm start
+    startCommand: node scripts/ensureJwtSecret.js && node scripts/ensure-mongodb-uri.js && npm start
     healthCheckPath: /api/health
     buildFilter:
       paths:
@@ -15,7 +15,10 @@ services:
         - models/**/*.js
         - middleware/**/*.js
         - controllers/**/*.js
+        - scripts/**/*.js
         - app.js
+        - server.js
+        - index.js
         - package.json
         - package-lock.json
     envVars:
@@ -27,6 +30,8 @@ services:
         fromDatabase:
           name: john-vianney-db
           property: connectionString
+      - key: MONGODB_URI_FALLBACK
+        value: "mongodb+srv://render:render@cluster0.mongodb.net/john_vianney?retryWrites=true&w=majority"
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_REFRESH_SECRET
