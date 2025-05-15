@@ -6,7 +6,7 @@ services:
     rootDir: backend
     region: ohio
     plan: free
-    buildCommand: npm ci
+    buildCommand: npm install
     startCommand: node scripts/ensureJwtSecret.js && npm start
     healthCheckPath: /api/health
     buildFilter:
